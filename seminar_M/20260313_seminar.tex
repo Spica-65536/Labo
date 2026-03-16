@@ -1,0 +1,231 @@
+\documentclass[a4paper,12pt]{ltjsarticle}
+
+% パッケージ
+\usepackage{graphicx}
+\usepackage{amsmath, amssymb}
+\usepackage{xcolor}
+\usepackage{geometry}
+\usepackage{enumitem}
+\usepackage{hyperref}
+\usepackage{luatexja-fontspec}
+
+% フォント設定
+\setmainjfont{IPAexMincho}
+\setmainfont{Times New Roman}
+\setsansjfont{IPAexMincho}
+\setsansfont{Times New Roman}
+
+% レイアウト
+\geometry{margin=25mm}
+\setlist[itemize]{label=--, leftmargin=2em}
+\setlist[enumerate]{leftmargin=2em}
+
+%====================
+% 強調用コマンド
+%====================
+\newcommand{\important}[1]{\textcolor{blue}{\textbf{#1}}}
+
+\begin{document}
+
+%====================
+% タイトルブロック
+%====================
+\begin{center}
+  {\huge 進捗報告（ver.38）}\\[1em]
+  {\large \today}\\
+  {\large 千葉工業大学大学院 学習工学研究室}\\
+  {\large 内山 裕太}
+\end{center}
+
+\vspace{2em}
+
+%====================
+\section{進捗概要}
+\begin{itemize}
+  \item システム開発
+  \item 自分を見つめ直す時間の確保（省略します）
+\end{itemize}
+\newpage
+
+%====================
+\section{進捗詳細}
+\subsection{システム進捗}
+\subsubsection{機能要件の整理}
+-----RQ-----
+\begin{enumerate}
+  \item 知識部品と一時部品を用いて証明を構成する学習支援は，合同証明における学習者の抽象的な解法理解を促進するか．
+  \item 合同条件を選択するのではなく，部品の探索と組合せによって見いだす学習支援は，合同証明問題に対する転移可能な解法理解を促進するか．
+  \item 証明問題の雛形に知識部品と一時部品を当てはめる学習方法は，例題模倣型学習と比較して，合同証明の解法過程の理解を深めるか．
+\end{enumerate}
+
+画面1：合同条件探索画面\\
+
+目的
+
+問題の仮定と知識部品をもとに一時部品を生成し，成立可能な合同条件を探索・選定する．\\
+
+表示要素
+\begin{itemize}
+  \item 問題タイトル
+  \item 問題文
+  \item 図
+  \item 証明対象の三角形
+  \item 仮定一覧
+  \item 知識部品一覧
+  \item 現在利用可能な一時部品一覧
+  \item 合同条件候補一覧
+  \item 選定中の合同条件
+  \item 次画面へ進むボタン\\
+\end{itemize}
+
+機能要件
+
+\begin{enumerate}
+  \item 問題表示
+  \begin{itemize}
+    \item 問題タイトルを表示できること．
+    \item 問題文を表示できること．
+    \item 図を表示できること．
+    \item 証明対象の三角形を表示できること．\\
+  \end{itemize}
+  \item 仮定表示
+  \begin{itemize}
+    \item 問題で与えられた仮定を一覧表示できること．
+    \item 仮定は，一時部品の初期候補として扱えることが分かること．\\
+  \end{itemize}
+  \item 知識部品表示
+  \begin{itemize}
+    \item 利用可能な知識部品を一覧表示できること．
+    \item 各知識部品を選択できること．
+    \item 選択中の知識部品が視覚的に分かること．\\
+  \end{itemize}
+  \item 一時部品生成
+  \begin{itemize}
+    \item 仮定と知識部品の関係に基づいて，一時部品を生成できること．
+    \item 生成された一時部品を一覧に追加表示できること．
+    \item 各一時部品に生成元情報を持たせられること．
+    \item 同一の一時部品を重複生成しないこと．\\
+  \end{itemize}
+  \item 合同条件探索
+  \begin{itemize}
+    \item 合同条件候補を一覧表示できること．
+    \item 一時部品を合同条件候補のスロットに配置できること．
+    \item 各条件について，必要な部品の型が揃っているか確認できること．
+    \item 学習者が採用する合同条件を1つ選択できること．\\
+  \end{itemize}
+  \item 画面遷移
+  \begin{itemize}
+    \item 合同条件を選択した状態で，画面2へ進めること．
+    \item 未選択の場合は，画面2へ進めないこと，または警告を出すこと．\\
+  \end{itemize}
+\end{enumerate}
+\newpage
+
+画面2：証明雛形構成画面\\
+
+目的
+
+画面1で選定した合同条件をもとに，証明の雛形へ一時部品とその根拠を当てはめて合同証明を完成させる．\\
+
+表示要素
+\begin{itemize}
+  \item 問題タイトル
+  \item 問題文
+  \item 図
+  \item 証明対象の三角形
+  \item 選定された合同条件
+  \item 一時部品一覧
+  \item 根拠候補一覧
+  \item 証明雛形
+  \item 完成確認ボタン
+  \item 判定結果メッセージ\\
+\end{itemize}
+
+
+機能要件
+\begin{enumerate}
+  \item 問題再表示
+  \begin{itemize}
+    \item 問題タイトルを表示できること．
+    \item 問題文を表示できること．
+    \item 図を表示できること．
+    \item 証明対象の三角形を表示できること．
+    \item 画面1で選定した合同条件を表示できること．\\
+  \end{itemize}
+  \item 一時部品表示
+  \begin{itemize}
+    \item 画面1で利用可能となった一時部品を一覧表示できること．
+    \item 一時部品を選択できること．
+    \item 選択中の一時部品が視覚的に分かること．\\
+  \end{itemize}
+  \item 根拠表示
+  \begin{itemize}
+    \item 一時部品に対応づけ可能な根拠候補を表示できること．
+    \item 根拠候補には，仮定または知識部品を含められること．
+    \item 選択中の根拠が視覚的に分かること．\\
+  \end{itemize}
+  \item 証明雛形構成
+  \begin{itemize}
+    \item 証明雛形の各ステップを表示できること．
+    \item 一時部品を各ステップに配置できること．
+    \item 各ステップに対して根拠を割り当てられること．
+    \item 配置済みの部品や根拠を解除・修正できること．\\
+  \end{itemize}
+  \item 完成確認
+  \begin{itemize}
+    \item 完成確認ボタンを押すことで，証明雛形の入力状態を検証できること．
+    \item 必要なステップが埋まっているか判定できること．
+    \item 不足がある場合は，不足内容を表示できること．
+    \item 完成した場合は，証明が成立したことを表示できること．\\
+  \end{itemize}
+\end{enumerate}
+\newpage
+
+\subsubsection{機能要件をもとにタスクの整理}
+ちょっと上手く載せる方法が思いつかなかったので，以下のリンクから見ていただけると幸いです．\\
+
+\href{https://docs.google.com/spreadsheets/d/1bc6ZpAYn9_rqxhomlmbGAN_Oicu0uma-P-dEPIwMabg/edit?usp=sharing}{タスク管理表}
+
+上記のスプレッドシートで，Todoリストには現状残っているタスクが入っています．フォームログには，活動開始時刻や終了時刻，完了したタスクが自動で保存されるようにしています．
+
+\subsubsection{開発進捗}
+まぁ，やれる限りはやってみました．自分的には面白そうな方向に見えているのですが，やっぱり学部との差分は？って聞かれると，手法的な考え方の部分では差が出せない？気もしています．\important{図形の証明学習自体に対して「部品的な考え方」を組み込むのは面白そうだと思っているので，手法をもっと洗練できれば絶対に良いものを作れる気がしてます（主観です）}．
+\newpage
+
+%====================
+% \section{問題点・課題}
+% \begin{itemize}
+%   \item 
+% \end{itemize}
+
+%====================
+\section{今後の予定}
+\begin{enumerate}
+  \item 自分なりに手法の洗練とシステムへの実装
+  \item 文献の調査と拝読（先生方の学会中とかに優先的にやる）
+\end{enumerate}
+
+%====================
+\section*{雑談}
+4月以降のシフト確定に向けて，スケジュールを確認したいため，院ゼミ参加対象者に向けたアンケート用スプレッドシートを作りました．\\
+
+\href{https://docs.google.com/spreadsheets/d/1dDO7kWSdryg2LqhwD9CDA9IB07sLHoLSbqeOP97zBPw/edit?usp=sharing}{スプレッドシート}
+
+%====================
+\section*{備考・メモ}
+\begin{itemize}
+  \item 3/24（火）
+  \begin{itemize}
+    \item 18:00〜春期講習会議
+  \end{itemize}
+  \item 3/26（木）〜4/3（金）
+  \begin{itemize}
+    \item 春期講習（おそらくフル？）
+  \end{itemize}
+  \item 4/6（月）17:00〜
+  \begin{itemize}
+    \item 2026 1学期会議
+  \end{itemize}
+\end{itemize}
+
+\end{document}
