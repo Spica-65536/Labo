@@ -1,0 +1,257 @@
+\documentclass[a4paper,12pt]{ltjsarticle}
+
+%====================
+% パッケージ
+%====================
+\usepackage{graphicx}
+\usepackage{amsmath, amssymb}
+\usepackage{geometry}
+\usepackage{enumitem}
+\usepackage{hyperref}
+\usepackage{luatexja-fontspec}
+\usepackage{color}
+
+%====================
+% フォント設定
+%====================
+\setmainjfont{IPAexMincho}
+\setmainfont{Times New Roman}
+\setsansjfont{IPAexMincho}
+\setsansfont{Times New Roman}
+
+%====================
+% レイアウト
+%====================
+\geometry{margin=25mm}
+\setlist[itemize]{label=--, leftmargin=2em}
+\setlist[enumerate]{leftmargin=2em}
+\setlength{\parindent}{0em}
+\renewcommand{\baselinestretch}{1.2}
+
+%====================
+% 強調用コマンド
+%====================
+\newcommand{\important}[1]{\textcolor{blue}{\textbf{#1}}}
+
+\begin{document}
+
+%====================
+% タイトルブロック
+%====================
+\begin{center}
+  {\huge 古池先生mtg}\\[1em]
+  {\large 日付：\today}\\
+  {\large 千葉工業大学大学院 学習工学研究室}\\
+  {\large 内山 裕太}
+\end{center}
+
+\vspace{2em}
+
+%====================
+% \section{研究概要}
+% 未確定（現在，フィードバック検討中）
+
+%====================
+\section{前回MTGからの進捗}
+\subsection{自身の研究テーマの確定}
+「図形の証明学習における知識部品化を支援する学習支援システムの開発
+
+中学校2年生から始まる「図形の証明学習」\\
+
+図形の証明学習では，学習者の持つ知識（図形の定義や性質）を「既知部品」として，問題から与えられる仮定などを「一時部品」とすることができそう．また，結論を導くために必要な3つの部品が何かを考え，それらが「自分の持ち合わせる部品のみで構築できるのか」や「部品同士を組み合わせて新たな部品を生み出す必要があるのか」を考える必要が出てくる．意外と，定義や性質，合同条件などの暗記情報は覚えてくれる子が多い一方で，例題ベースの証明問題以外は解けないとあきらめる子が多い印象がある．\\
+
+上記の考え方ベースで学べる教材があれば，証明問題は「組み立てるだけ」という考えで学ぶことができるはずなので，有用性はあると考えました（中学生は「論理的に」証明をするのは難しすぎるので，「結論には何が必要か」を考える力が重要になると思います）．\\
+
+という考え方の下でJSiSEの学会原稿を書いてみようと思ったですが，まだ手法が固まってないのと，関連研究が読み切れてないから難しかったです．自分なりに研究背景や問題意識を整理して1章だけは書いてみました．一緒に添付しておきます．\\
+
+この研究テーマに対して，少し意見がいただきたいです．\\
+
+\subsection{関連研究調査}
+今回は全国数学教育学会の学会誌（数学教育学研究），日本数学教育学会誌の中から以下のものをリストアップした
+
+\begin{enumerate}
+  \item \href{https://www.jstage.jst.go.jp/article/jjsme/65/3/65_13/_pdf/-char/ja}{中西知真紀, 国宗進, 家田晴行, 榎戸章仁, 春日龍郎, 金児正史, 小関熙純, 東風谷幸広, 山下国広: 図形における論証指導について, 日本数学教育学会誌, Vol. 65, No. 3, pp. 13-24, 1983}
+  \item \href{https://www.jstage.jst.go.jp/article/jasme/27/1/27_33/_pdf/-char/ja}{渡邊慶子, 岡崎正和: 証明言語の生成とふり返りによる定理と証明の相互理解 ―場合分けのある証明に着目して―, Vol. 27, No. 1, pp.33-46, 2021}
+  \item \href{https://www.jstage.jst.go.jp/article/jjsme/104/1/104_2/_pdf/-char/ja}{近藤裕: 算数・数学科における「説明・証明」の能力に関する研究, Vol. 104, No. 1, pp. 2-12, 2022}
+  \item \href{https://www.jstage.jst.go.jp/article/jasme/3/0/3_KJ00008199223/_pdf/-char/ja}{長谷川順一, 三井誠弦: 中学生の証明問題解決過程の分析, Vol. 3, pp. 137-146, 1997}
+  \item \href{https://www.jstage.jst.go.jp/article/jjet/42/Suppl./42_S42092/_pdf/-char/ja}{濱田さとみ, 鷹岡亮, 横山誠: 中学校数学科合同証明を対象とした証明構造理解支援Webアプリの開発と有用性検討, 日本教育工学会論文誌, Vol. 42, No. Suppl, pp. 169-172, 2018}
+  \item \href{https://www.jstage.jst.go.jp/article/jjsme/69/11/69_23/_pdf/-char/en}{磯田正美: 体系化の立場から見た中2の図形指導, 日本数学教育学会誌, Vol. 69, No. 11, pp. 23-32}
+  \item \href{https://www.jstage.jst.go.jp/article/jasme/23/2/23_141/_pdf/-char/ja}{宍戸建太, 岡崎正和: 図形の証明の構成過程におけるジェスチャーの役割に関する研究, 全国数学教育学会誌 数学教育学研究, Vol. 23, No. 2, pp. 141-149, 2017}
+  \item \href{https://www.jstage.jst.go.jp/article/jjsme/77/11/77_17/_pdf/-char/ja}{垣花京子, 清水克彦: 図形の証明問題での測定値の役割 -コンピュータ環境下における生徒の活動分析を通して-, 日本数学教育学会誌, Vol. 77, No. 11, pp. 17-22}
+\end{enumerate}
+\newpage
+
+\subsection{システム開発}
+とりあえず，自分の思い描くシステムを一旦作っている状態．基本的な動き方はできているので，どこでどのようなフィードバックを与えるかを検討中（中身のロジックは何も作ってない）．
+
+\subsubsection{機能要件の整理}
+-----RQ-----
+\begin{enumerate}
+  \item 知識部品と一時部品を用いて証明を構成する学習支援は，合同証明における学習者の抽象的な解法理解を促進するか．
+  \item 合同条件を選択するのではなく，部品の探索と組合せによって見いだす学習支援は，合同証明問題に対する転移可能な解法理解を促進するか．
+  \item 証明問題の雛形に知識部品と一時部品を当てはめる学習方法は，例題模倣型学習と比較して，合同証明の解法過程の理解を深めるか．
+\end{enumerate}
+
+画面1：合同条件探索画面\\
+
+目的
+
+問題の仮定と知識部品をもとに一時部品を生成し，成立可能な合同条件を探索・選定する．\\
+
+表示要素
+\begin{itemize}
+  \item 問題タイトル
+  \item 問題文
+  \item 図
+  \item 証明対象の三角形
+  \item 仮定一覧
+  \item 知識部品一覧
+  \item 現在利用可能な一時部品一覧
+  \item 合同条件候補一覧
+  \item 選定中の合同条件
+  \item 次画面へ進むボタン\\
+\end{itemize}
+
+機能要件
+
+\begin{enumerate}
+  \item 問題表示
+  \begin{itemize}
+    \item 問題タイトルを表示できること．
+    \item 問題文を表示できること．
+    \item 図を表示できること．
+    \item 証明対象の三角形を表示できること．\\
+  \end{itemize}
+  \item 仮定表示
+  \begin{itemize}
+    \item 問題で与えられた仮定を一覧表示できること．
+    \item 仮定は，一時部品の初期候補として扱えることが分かること．\\
+  \end{itemize}
+  \item 知識部品表示
+  \begin{itemize}
+    \item 利用可能な知識部品を一覧表示できること．
+    \item 各知識部品を選択できること．
+    \item 選択中の知識部品が視覚的に分かること．\\
+  \end{itemize}
+  \item 一時部品生成
+  \begin{itemize}
+    \item 仮定と知識部品の関係に基づいて，一時部品を生成できること．
+    \item 生成された一時部品を一覧に追加表示できること．
+    \item 各一時部品に生成元情報を持たせられること．
+    \item 同一の一時部品を重複生成しないこと．\\
+  \end{itemize}
+  \item 合同条件探索
+  \begin{itemize}
+    \item 合同条件候補を一覧表示できること．
+    \item 一時部品を合同条件候補のスロットに配置できること．
+    \item 各条件について，必要な部品の型が揃っているか確認できること．
+    \item 学習者が採用する合同条件を1つ選択できること．\\
+  \end{itemize}
+  \item 画面遷移
+  \begin{itemize}
+    \item 合同条件を選択した状態で，画面2へ進めること．
+    \item 未選択の場合は，画面2へ進めないこと，または警告を出すこと．\\
+  \end{itemize}
+\end{enumerate}
+\newpage
+
+画面2：証明雛形構成画面\\
+
+目的
+
+画面1で選定した合同条件をもとに，証明の雛形へ一時部品とその根拠を当てはめて合同証明を完成させる．\\
+
+表示要素
+\begin{itemize}
+  \item 問題タイトル
+  \item 問題文
+  \item 図
+  \item 証明対象の三角形
+  \item 選定された合同条件
+  \item 一時部品一覧
+  \item 根拠候補一覧
+  \item 証明雛形
+  \item 完成確認ボタン
+  \item 判定結果メッセージ\\
+\end{itemize}
+
+
+機能要件
+\begin{enumerate}
+  \item 問題再表示
+  \begin{itemize}
+    \item 問題タイトルを表示できること．
+    \item 問題文を表示できること．
+    \item 図を表示できること．
+    \item 証明対象の三角形を表示できること．
+    \item 画面1で選定した合同条件を表示できること．\\
+  \end{itemize}
+  \item 一時部品表示
+  \begin{itemize}
+    \item 画面1で利用可能となった一時部品を一覧表示できること．
+    \item 一時部品を選択できること．
+    \item 選択中の一時部品が視覚的に分かること．\\
+  \end{itemize}
+  \item 根拠表示
+  \begin{itemize}
+    \item 一時部品に対応づけ可能な根拠候補を表示できること．
+    \item 根拠候補には，仮定または知識部品を含められること．
+    \item 選択中の根拠が視覚的に分かること．\\
+  \end{itemize}
+  \item 証明雛形構成
+  \begin{itemize}
+    \item 証明雛形の各ステップを表示できること．
+    \item 一時部品を各ステップに配置できること．
+    \item 各ステップに対して根拠を割り当てられること．
+    \item 配置済みの部品や根拠を解除・修正できること．\\
+  \end{itemize}
+  \item 完成確認
+  \begin{itemize}
+    \item 完成確認ボタンを押すことで，証明雛形の入力状態を検証できること．
+    \item 必要なステップが埋まっているか判定できること．
+    \item 不足がある場合は，不足内容を表示できること．
+    \item 完成した場合は，証明が成立したことを表示できること．\\
+  \end{itemize}
+\end{enumerate}
+\newpage
+
+\subsubsection{機能要件をもとにタスクの整理}
+ちょっと上手く載せる方法が思いつかなかったので，以下のリンクから見ていただけると幸いです．\\
+
+\href{https://docs.google.com/spreadsheets/d/1bc6ZpAYn9_rqxhomlmbGAN_Oicu0uma-P-dEPIwMabg/edit?usp=sharing}{タスク管理表}
+
+上記のスプレッドシートで，Todoリストには現状残っているタスクが入っています．フォームログには，活動開始時刻や終了時刻，完了したタスクが自動で保存されるようにしています．
+\newpage
+
+%====================
+\section{今回新しく分かったこと}
+\begin{itemize}
+  \item 図形の証明学習の狙い（文科省）と，プログラミング学習の狙いをうまく結びつけられそう（確定ではない）
+\end{itemize}
+
+%====================
+\section{現在の問題点・詰まり}
+\begin{itemize}
+  \item 学部時代の研究との差分を聞かれると答えられない
+  \begin{itemize}
+    \item 学部時代は部品的知識の再利用と，構造化を同時に行っていたからどちらがどれくらい影響を与えてくれたのかが不明．ここを明確にしたくて，部品的知識は図形の証明学習ならめっちゃ相性良さそうということに気付いた．
+  \end{itemize}
+\end{itemize}
+
+%====================
+\section{相談したい点}
+\begin{itemize}
+  \item 語彙力が心配ですが，この研究はどう思いますか？自分はこんなシステムがあったら良いなって思えてるので，
+\end{itemize}
+
+%====================
+\section{次回MTGまでの予定}
+mtg時に決定
+
+%====================
+\section*{備考・メモ}
+\begin{itemize}
+  \item 4月以降のスケジュールは未定（現状は金曜日だけフルで残れそう）
+\end{itemize}
+
+\end{document}
